@@ -119,6 +119,8 @@ const Game = () => {
 	const [dragY, setDragY] = useState(0);
 	const [gameOver, setGameOver] = useState(false);
 
+	const [quote, setQuote] = useState('---');
+
 	useEffect(() => {
 		const levelBaseScore = 1000;
 		const nextLevel = level + 1;
@@ -263,6 +265,13 @@ const Game = () => {
 		[level]
 	);
 
+	const newQuote = async () => {
+		var response = await fetch("/quotes");
+		var body = await response.text();
+		console.log(body);
+		setQuote(body);
+	};
+
 	const validatePosition = React.useCallback(
 		(pos, bloco) => {
 			for (let y = 0; y < bloco.bloco.length; y++)
@@ -316,6 +325,13 @@ const Game = () => {
 		(pause || gameOver) ? null : down ? 50 : 450 - (level - 1) * 20
 	);
 
+	useInterval(
+		() => {
+			newQuote();
+		},
+		3000
+	);
+
 	useEffect(() => {
 		if (!player) return;
 		setHintPlayer(calculateHintPlayer(player));
@@ -356,6 +372,7 @@ const Game = () => {
 				<BarLoader color={"#C41212"} />
 			</Center>
 		);
+
 	return (
 		<Stage
 			lose={gameOver}
@@ -364,7 +381,7 @@ const Game = () => {
 			player={player}
 			hint={hintPlayer}
 			paused={pause}
-			status={{ lines, score, level }}
+			status={{ lines, score, level, quote }}
 			onBlur={() => setPause(true)}
 			onFocus={() => setPause(false)}
 			tabIndex="0"

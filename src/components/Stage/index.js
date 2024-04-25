@@ -330,6 +330,15 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 							title="LINES"
 							value={status.lines}
 						/>
+						<StatusRow
+							backgroundColor={theme3d ? "#444" : "black"}
+							portrait={portrait}
+							borderSize={pixelSize / 10}
+							margin={pixelSize / 3}
+							padding={pixelSize / 2}
+							title="Famous Quotes"
+							value={status.quote}
+						/>
 					</ContainerStatus>
 				)}
 			</Game>
