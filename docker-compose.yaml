@@ -1,0 +1,30 @@
+services:
+  tetris:
+    build:
+      context: .
+    container_name: tetris
+    restart: unless-stopped
+    volumes:
+      - './public:/app/public'
+    ports:
+      - 3001:3000
+
+  quotes:
+    build:
+      context: quotes/.
+    container_name: quotes
+    restart: unless-stopped
+    ports:
+      - 3002:3000
+    volumes:
+      - './quotes/texts:/quotes'
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 3000:80
+    volumes:
+      - './nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+ 
