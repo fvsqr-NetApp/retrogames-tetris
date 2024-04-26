@@ -20,4 +20,5 @@ kind: ConfigMap
 metadata:
   labels:
     io.kompose.service: quotes
+    app: tetris
   name: quotes-cm0

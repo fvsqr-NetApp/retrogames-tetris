@@ -53,4 +53,5 @@ kind: ConfigMap
 metadata:
   labels:
     io.kompose.service: tetris
+    app: tetris
   name: tetris-cm0

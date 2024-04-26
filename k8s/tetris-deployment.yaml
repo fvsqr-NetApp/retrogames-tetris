@@ -6,6 +6,7 @@ metadata:
     kompose.version: 1.33.0 (HEAD)
   labels:
     io.kompose.service: tetris
+    app: tetris
   name: tetris
 spec:
   replicas: 1

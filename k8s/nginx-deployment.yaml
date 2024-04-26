@@ -6,6 +6,7 @@ metadata:
     kompose.version: 1.33.0 (HEAD)
   labels:
     io.kompose.service: nginx
+    app: tetris
   name: nginx
 spec:
   replicas: 1
@@ -22,6 +23,7 @@ spec:
       labels:
         io.kompose.network/tetris-default: "true"
         io.kompose.service: nginx
+        app: tetris
     spec:
       containers:
         - image: nginx:latest

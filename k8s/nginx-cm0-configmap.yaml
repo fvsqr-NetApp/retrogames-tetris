@@ -28,4 +28,5 @@ metadata:
     use-subpath: "true"
   labels:
     io.kompose.service: nginx
+    app: tetris
   name: nginx-cm0
