@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.yaml convert
+    kompose.version: 1.33.0 (HEAD)
+  labels:
+    io.kompose.service: quotes
+  name: quotes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: quotes
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f docker-compose.yaml convert
+        kompose.version: 1.33.0 (HEAD)
+      labels:
+        io.kompose.network/tetris-default: "true"
+        io.kompose.service: quotes
+    spec:
+      containers:
+        - image: quotes
+          name: quotes
+          ports:
+            - containerPort: 3000
+              hostPort: 3002
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /quotes
+              name: quotes-cm0
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            name: quotes-cm0
+          name: quotes-cm0

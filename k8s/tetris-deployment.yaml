@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f docker-compose.yaml convert
+    kompose.version: 1.33.0 (HEAD)
+  labels:
+    io.kompose.service: tetris
+  name: tetris
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: tetris
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f docker-compose.yaml convert
+        kompose.version: 1.33.0 (HEAD)
+      labels:
+        io.kompose.network/tetris-default: "true"
+        io.kompose.service: tetris
+    spec:
+      containers:
+        - image: tetris
+          name: tetris
+          ports:
+            - containerPort: 3000
+              hostPort: 3001
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/public
+              name: tetris-cm0
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            name: tetris-cm0
+          name: tetris-cm0
