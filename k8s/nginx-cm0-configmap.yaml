@@ -13,7 +13,14 @@ data:
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
-    }
+      }
+    
+      location /react-tetris {
+        proxy_pass http://tetris:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+      }
 
       location /tetris/ {
         rewrite ^/tetris(/.*)$ $1 break;
