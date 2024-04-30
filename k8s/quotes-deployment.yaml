@@ -39,6 +39,3 @@ spec:
         - name: quotes-volume
           persistentVolumeClaim:
             claimName: quotes-claim
-        - configMap:
-            name: quotes-cm0
-          name: quotes-cm0
