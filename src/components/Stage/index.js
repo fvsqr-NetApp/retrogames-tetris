@@ -336,7 +336,7 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 							borderSize={pixelSize / 10}
 							margin={pixelSize / 3}
 							padding={pixelSize / 2}
-							title="Famous Quotes"
+							title="Ads"
 							value={status.quote}
 						/>
 					</ContainerStatus>
