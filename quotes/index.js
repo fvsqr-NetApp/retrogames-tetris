@@ -10,11 +10,15 @@ app.get('/quotes', function(req, res){
         //handling error
         if (err) {
             return console.log('Unable to scan directory: ' + err);
-        } 
+        }
 
-        var el = Math.floor(Math.random() * files.length);
+        do {
+            var el = Math.floor(Math.random() * files.length);
 
-        path = dir + '/' + files[el];
+            path = dir + '/' + files[el];
+
+            console.log('chosen path', path, ' - is dir?', fs.lstatSync(path).isDirectory());
+        } while (fs.lstatSync(path).isDirectory());
 
         fs.readFile(path, function(err, buf) {
             res.send(buf.toString());
