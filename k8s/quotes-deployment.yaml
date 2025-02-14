@@ -5,14 +5,13 @@ metadata:
     kompose.cmd: kompose -f docker-compose.yaml convert
     kompose.version: 1.33.0 (HEAD)
   labels:
-    io.kompose.service: quotes
     app: tetris
-  name: quotes
+  name: moneymaker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: quotes
+      io.kompose.service: moneymaker
   strategy:
     type: Recreate
   template:
@@ -22,20 +21,20 @@ spec:
         kompose.version: 1.33.0 (HEAD)
       labels:
         io.kompose.network/tetris-default: "true"
-        io.kompose.service: quotes
+        io.kompose.service: moneymaker
     spec:
       containers:
-        - image: quay.io/str_netappontour/tetris-quotes
-          name: quotes
+        - image: quay.io/str_netappontour/moneymaker:0.1.0
+          name: moneymaker
           ports:
             - containerPort: 3000
               hostPort: 3002
               protocol: TCP
           volumeMounts:
-            - mountPath: /quotes
-              name: quotes-volume
+            - mountPath: /moneymaker
+              name: moneymaker-volume
       restartPolicy: Always
       volumes:
-        - name: quotes-volume
+        - name: moneymaker-volume
           persistentVolumeClaim:
-            claimName: quotes-claim
+            claimName: moneymaker-claim

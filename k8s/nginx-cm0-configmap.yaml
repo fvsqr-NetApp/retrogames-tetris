@@ -4,8 +4,8 @@ data:
     server {
       listen       80;
 
-      location /quotes {
-        proxy_pass http://quotes:3002;
+      location /moneymaker {
+        proxy_pass http://moneymaker:3002;
       }
 
       location /sockjs-node {
