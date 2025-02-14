@@ -337,7 +337,7 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 							margin={pixelSize / 3}
 							padding={pixelSize / 2}
 							title="Ads"
-							value={status.quote}
+							value={status.moneymaker}
 						/>
 					</ContainerStatus>
 				)}

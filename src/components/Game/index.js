@@ -119,7 +119,7 @@ const Game = () => {
 	const [dragY, setDragY] = useState(0);
 	const [gameOver, setGameOver] = useState(false);
 
-	const [quote, setQuote] = useState('---');
+	const [moneymaker, setMoneyMaker] = useState('---');
 
 	useEffect(() => {
 		const levelBaseScore = 1000;
@@ -265,11 +265,11 @@ const Game = () => {
 		[level]
 	);
 
-	const newQuote = async () => {
-		var response = await fetch("/quotes");
+	const newMoneyMaker = async () => {
+		var response = await fetch("/moneymaker");
 		var body = await response.text();
 		console.log(body);
-		setQuote(body);
+		setMoneyMaker(body);
 	};
 
 	const validatePosition = React.useCallback(
@@ -327,7 +327,7 @@ const Game = () => {
 
 	useInterval(
 		() => {
-			newQuote();
+			newMoneyMaker();
 		},
 		3000
 	);
@@ -381,7 +381,7 @@ const Game = () => {
 			player={player}
 			hint={hintPlayer}
 			paused={pause}
-			status={{ lines, score, level, quote }}
+			status={{ lines, score, level, moneymaker }}
 			onBlur={() => setPause(true)}
 			onFocus={() => setPause(false)}
 			tabIndex="0"
