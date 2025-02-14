@@ -10,16 +10,16 @@ services:
     ports:
       - 3001:3000
 
-  quotes:
-    image:  quay.io/str_netappontour/tetris-quotes
+  moneymaker:
+    image:  quay.io/str_netappontour/moneymaker:0.1.0
     build:
-      context: quotes/.
-    container_name: quotes
+      context: moneymaker/.
+    container_name: moneymaker
     restart: unless-stopped
     ports:
       - 3002:3000
     volumes:
-      - './quotes/texts:/quotes'
+      - './moneymaker/texts:/moneymaker'
 
   nginx:
     image: nginx:latest
