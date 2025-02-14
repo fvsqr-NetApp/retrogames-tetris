@@ -3,8 +3,8 @@ var app = express();
 
 const fs = require("fs");
 
-app.get('/quotes', function(req, res){
-    const dir = '/quotes';
+app.get('/moneymaker', function(req, res){
+    const dir = '/moneymaker';
     //passsing directoryPath and callback function
     fs.readdir(dir, function (err, files) {
         //handling error
