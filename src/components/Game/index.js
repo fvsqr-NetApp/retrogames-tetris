@@ -329,7 +329,7 @@ const Game = () => {
 		() => {
 			newMoneyMaker();
 		},
-		3000
+		process.env.REACT_APP_MONEYMAKER_UPDATE_DELAY || 5000
 	);
 
 	useEffect(() => {

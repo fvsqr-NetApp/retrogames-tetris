@@ -5,6 +5,7 @@ import Switch from "react-switch";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import background from "../../images/background.jpg";
 import StatusRow from "../StatusRow";
+import MoneymakerRow from "../MoneymakerRow";
 import LoseGame from '../LoseGame';
 
 import Color from "color";
@@ -204,7 +205,17 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 	}, [theme3d]);
 
 	return (
+		
 		<div>
+			<MoneymakerRow
+							backgroundColor={theme3d ? "#444" : "black"}
+							portrait={portrait}
+							borderSize={pixelSize / 10}
+							margin={pixelSize / 3}
+							padding={pixelSize / 2}
+							title="Ads"
+							value={status.moneymaker}
+						/>
 			<Game portrait={portrait}>
 				{nextRender && (
 					<ContainerNext portrait={portrait} pixelSize={pixelSize}>
@@ -330,15 +341,7 @@ const Stage = ({ lose, restartClick, map, player, hint, status, paused, ...other
 							title="LINES"
 							value={status.lines}
 						/>
-						<StatusRow
-							backgroundColor={theme3d ? "#444" : "black"}
-							portrait={portrait}
-							borderSize={pixelSize / 10}
-							margin={pixelSize / 3}
-							padding={pixelSize / 2}
-							title="Ads"
-							value={status.moneymaker}
-						/>
+						
 					</ContainerStatus>
 				)}
 			</Game>

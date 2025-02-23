@@ -5,6 +5,8 @@ services:
       context: .
     container_name: tetris
     restart: unless-stopped
+    environment:
+      - REACT_APP_MONEYMAKER_UPDATE_DELAY=4000
     volumes:
       - './public:/app/public'
     ports:
